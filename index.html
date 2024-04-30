@@ -24,6 +24,30 @@
       </div>
     </div>
     <script>
+  function unityShowBanner(msg, type) {
+    var warningBanner = document.getElementById('unity-warning');
+    function updateBannerVisibility() {
+      warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+    }
+    var div = document.createElement('div');
+    div.innerHTML = msg;
+    warningBanner.appendChild(div);
+    if (type == 'error') {
+      div.style = 'background: red; padding: 10px;';
+    } else {
+      if (type == 'warning') {
+        div.style = 'background: yellow; padding: 10px;';
+      }
+      setTimeout(function() {
+        warningBanner.removeChild(div);
+        updateBannerVisibility();
+      }, 5000);
+    }
+    updateBannerVisibility();
+  }
+</script>
+
+    <script>
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/WebGL.loader.js";
       var config = {
